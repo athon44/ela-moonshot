@@ -25,10 +25,10 @@ module.exports = {
         if (req.params.command) {
             let responseObject = {};
             if(debt > person.value / 2) {
-                response['answer'.response.Object+1] = acceptedAnswers['say_predict_debit']   
+                response['answer'+Object.keys(responseObject).length+1] = acceptedAnswers['say_predict_debit']   
             }
-
-            return res.json({ answer: acceptedAnswers[req.params.command] });
+            responseObject['answer'+Object.keys(responseObject).length+1] = acceptedAnswers[req.params.command];
+            return res.json(responseObject);
         }
     } 
 } 
