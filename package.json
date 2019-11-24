@@ -1,0 +1,15 @@
+{
+  "name": "elo-moonshot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "config": "^3.2.4",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12",
+    "nodemon": "^2.0.1"
+  }
+}
