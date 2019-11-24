@@ -16,7 +16,7 @@ module.exports = {
             'say_happy_to_oblige': 'Ficarei muito contente em atendê-los',
             'say_bank_balance': `O seu saldo atual é de ${person.balance}`,
             'say_confirm_payment': `Há um novo pagamento pendente com data para ${debt.due_to}, deseja que eu o pague?`,
-            'say_history_products': `Você tem ${product.length} produtos, no seu histórico, com uma média de preço ${Math.floor(media * 100) / 100}`,
+            'say_history_products': `Você tem ${product.length} produtos no seu histórico, com uma média de preço ${Math.floor(media * 100) / 100}`,
             'say_new_debt': `Vocẽ tem um novo débito no valor de ${debt.value}`,
             'say_predict_debit': `Baseado no seu histórico de compras, as previsões para o próximo mês são de que você não irá fechar com as contas em dia`,
         };
@@ -27,8 +27,8 @@ module.exports = {
             'ajuda preciso de ajuda nos ajudar Ajudar ajuda',
             'balanço saldo total Saldo',
             'confirmar pagamento Confirmar Pagamento',
-            'consultar historico',
-            'novo debito',
+            'consultar historico compras',
+            'debito Debito contas pagar',
             'previsão proximo mês'
         ];
 
@@ -37,6 +37,7 @@ module.exports = {
             const result = arrTranscript.filter(arrTranscript => arrText.some(arrText => arrText === arrTranscript));
             return result;
         }
+
         let transcript = req.body.text;
         transcript = transcript.split(' ');
         
@@ -49,6 +50,10 @@ module.exports = {
 
         }
 
-        return res.json(returnObject);
+        axios.post('/3000', {
+            data: {
+                returnObject
+            }
+        });
     } 
 } 
