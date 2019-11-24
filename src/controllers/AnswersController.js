@@ -50,6 +50,6 @@ module.exports = {
               returnObject['answer'+1] = acceptedAnswers[objectKeys[i]];
           }
       }
-      createFile(returnObject.answer1);
+      createFile(returnObject.anwser1);
   } 
 } 
