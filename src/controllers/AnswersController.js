@@ -4,7 +4,7 @@ const { getProduct } = require('../data/products');
 
 module.exports = {
     getAnswers(req, res) {
-        const person = getPeople(req.params.user);
+        const person = getPeople(req.body.user);
         const debt = getDebt();
         const product = getProduct();
         const reducer = (accumulator, { value }) => accumulator + Number.parseInt(value.slice(1));
@@ -20,15 +20,35 @@ module.exports = {
             'say_new_debt': `Vocẽ tem um novo débito no valor de ${debt.value}`,
             'say_predict_debit': `Baseado no seu histórico de compras, as previsões para o próximo mês são de que você não irá fechar com as contas em dia`,
         };
+        
+        const idealSentences = [
+            'olá Olá oi Oi',
+            'boa tarde Boa Tarde Boa tarde',
+            'ajuda preciso de ajuda nos ajudar Ajudar ajuda',
+            'balanço saldo total Saldo',
+            'confirmar pagamento Confirmar Pagamento',
+            'consultar historico',
+            'novo debito',
+            'previsão proximo mês'
+        ];
 
-
-        if (req.params.command) {
-            let responseObject = {};
-            if(debt > person.value / 2) {
-                response['answer'+Object.keys(responseObject).length+1] = acceptedAnswers['say_predict_debit']   
-            }
-            responseObject['answer'+Object.keys(responseObject).length+1] = acceptedAnswers[req.params.command];
-            return res.json(responseObject);
+        function getOverlaps(arrTranscript, arrText) {
+            arrText = arrText.split(' ');
+            const result = arrTranscript.filter(arrTranscript => arrText.some(arrText => arrText === arrTranscript));
+            return result;
         }
+        let transcript = req.body.text;
+        transcript = transcript.split(' ');
+        
+        let returnObject = {};
+        for(let i = 0; i < idealSentences.length; i++) {
+            if(getOverlaps(transcript, idealSentences[i]).length !== 0) {
+                let objectKeys = Object.keys(acceptedAnswers);
+                returnObject['answer'+1] = acceptedAnswers[objectKeys[i]];
+            }
+
+        }
+
+        return res.json(returnObject);
     } 
 } 
