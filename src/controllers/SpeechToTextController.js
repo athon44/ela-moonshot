@@ -66,7 +66,7 @@ function streamingMicRecognize(encoding, sampleRateHertz, languageCode) {
           ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
           : `\n\nReached transcription time limit, press Ctrl+C\n`
       ),
-        AnswersController.inAndOut(data.results[0].alternatives.transcript);
+        data.results[0].alternatives.transcript ? AnswersController.getAnswers(data.results[0].alternatives.transcript) : '';
     });
 
   recorder
