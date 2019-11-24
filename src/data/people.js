@@ -55,7 +55,7 @@ const people = [{
     "balance": "$961.98",
     "cc": "jcb"
   }, {
-    "first_name": "Euell",
+    "first_name": "Gabriel",
     "last_name": "MacGaughie",
     "email": "emacgaughie7@mapy.cz",
     "gender": "Male",
