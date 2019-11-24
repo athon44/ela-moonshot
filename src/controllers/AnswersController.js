@@ -5,7 +5,6 @@ const { createFile } = require("../controllers/TextToSpeechController");
 
 module.exports = {
   getAnswers(text) {
-    console.log(text);
       const person = getPeople("Gabriel");
       const debt = getDebt();
       const product = getProduct();
@@ -14,7 +13,7 @@ module.exports = {
 
       const acceptedAnswers = {
           'say_hi': `Olá, ${person.first_name}!`,
-          'say_good_afternoon': 'Boa tarde a todos!',
+          'say_good_afternoon': `Boa tarde, Gabriel!`,
           'say_happy_to_oblige': 'Ficarei muito contente em atendê-los',
           'say_bank_balance': `O seu saldo atual é de ${person.balance}`,
           'say_confirm_payment': `Há um novo pagamento pendente com data para ${debt.due_to}, deseja que eu o pague?`,
@@ -50,6 +49,6 @@ module.exports = {
               returnObject['answer'+1] = acceptedAnswers[objectKeys[i]];
           }
       }
-      createFile(returnObject.anwser1);
+      createFile(returnObject.answer1);
   } 
 } 

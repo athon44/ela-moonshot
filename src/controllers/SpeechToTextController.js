@@ -67,7 +67,7 @@ function streamingMicRecognize(encoding, sampleRateHertz, languageCode) {
           : `\n\nReached transcription time limit, press Ctrl+C\n`
       ),
         data.results[0].alternatives[0].transcript ? AnswersController.getAnswers(data.results[0].alternatives[0].transcript) : '';
-    });
+      });
 
   recorder
     .record({

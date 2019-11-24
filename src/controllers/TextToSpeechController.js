@@ -1,6 +1,7 @@
 const textToSpeech = require("@google-cloud/text-to-speech");
 const fs = require("fs");
 const util = require("util");
+const player = require('play-sound')(opts = {});
 
 module.exports = {
   async createFile(text) {
@@ -16,5 +17,12 @@ module.exports = {
       await writeFile("output.mp3", response.audioContent, "binary");
       console.log("Audio content written to file: output.mp3");
     }
+ 
+    const audio = player.play('output.mp3', function(err) {
+      if(err) console.log('nois');
+    });
+
+    audio.kill();
+    
   }
 };
